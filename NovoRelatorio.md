@@ -114,3 +114,4 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 Adicionar gráficos de distribuição das classes
 - tipo quantas instâncias tem de cada categoria para cada feature
 - Plotar a distibuição das idades também
+- Adicionar também uma matriz de correlação entre os atributos
