@@ -6,9 +6,9 @@
 ## Relatório para descrição do banco de dados no formato atributo-alvo para notificações de pacientes com esquistossomose
 
 **Alunos:**
-*Lucca Miranda Nunes |RA*
+*Lucca Miranda Nunes | 230554*
 
-*Luiz Felipe Corradini Rego Costa |RA*
+*Luiz Felipe Corradini Rego Costa | 230613*
 
 *Pablo Henrique Almeida Mendes |RA*
 
