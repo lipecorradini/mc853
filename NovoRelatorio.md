@@ -10,7 +10,7 @@
 
 *Luiz Felipe Corradini Rego Costa | 230613*
 
-*Pablo Henrique Almeida Mendes |RA*
+*Pablo Henrique Almeida Mendes | 230977*
 
 ### 1. Visão Geral
 
