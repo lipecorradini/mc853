@@ -123,5 +123,5 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 **Importância:** A visualização da distribuição regional ajuda a entender onde a maioria dos pacientes está localizada. Isso é vital para a alocação de recursos, planejamento de instalações médicas e esforços focados em regiões que exibem maior necessidade ou ocorrência da condição em análise.
 
 ## Heatmap de Correlação de Atributos
-![Heatmap de Correlação](consistent_heatmap_correlation.png)
+![Heatmap de Correlação](readable_heatmap_correlation.png)
 **Importância:** O heatmap de correlação revela relações entre diferentes atributos. Ele pode destacar quais variáveis estão fortemente correlacionadas, fornecendo insights sobre potenciais causas ou fatores associados à condição. Isso é particularmente útil na modelagem preditiva e em estudos de intervenção.
