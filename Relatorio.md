@@ -121,8 +121,8 @@ Inicialmente, tentamos realizar uma divisão geográfica dos dados de esquistoss
 
 ### 4.2 Distribuição por Regiões
 ![Distribuição por Regiões](readable_distribution_by_regions.png)
-**Importância:** A observação das regiões pode trazer uma correlação com os casos e seus espaços geográficos, incluindo fatores climáticos e sociais. Entretanto, a ausência de região em uma quantidade de casos é capaz de afetar essa análise, trazendo, portanto, um ponto de análise futura. 
+**Importância:** A observação das regiões pode trazer uma correlação com os casos e seus espaços geográficos, incluindo fatores climáticos e sociais. Entretanto, a ausência de região em uma quantidade considerável de casos é capaz de afetar essa análise, trazendo, portanto, um ponto para ser observado em etapas futuras do projeto. 
 
 ### 4.3 Heatmap de Correlação de Atributos
 ![Heatmap de Correlação](readable_heatmap_correlation.png)
-**Importância:** O heatmap é crucial para validar correlações entre os atributos selecionados, tais como: Quantidade de Ovos Encontrados X Exame Positivo, Resultado X Idade, etc. O que torna, por sua vez, nossa análise mais profunda e objetiva.
+**Importância:** Analisando as correlações entre as features escolhidas, é possível notar que poucas apresentam correlação próxima de 1 (ou seja, dependente linearmentes). Porém, o heatmap também evidencia correlações acima da média, como entre Quantidade de Ovos e Diagnóstico positivo, indicando que uma futura análise acerca da linearidade entre essas features pode ser realizada na etapa de treinamento do modelo, a fim de evitar variáveis linearmente dependentes.
