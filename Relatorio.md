@@ -113,7 +113,7 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 
 Inicialmente, tentamos realizar uma divisão geográfica dos dados de esquistossomose para treino e teste do modelo. Contudo, identificamos um severo desequilíbrio na distribuição dos casos entre as regiões brasileiras: a região Sudeste concentra a maioria dos registros (4.135 casos), seguida pela região Nordeste (1.719 casos), enquanto as regiões Norte, Sul e Centro-Oeste têm representação mínima (52, 66 e 26 casos, respectivamente). Acreditamos que essa disparidade regional comprometeria o treinamento do modelo, criando viés e limitando sua capacidade de generalização. Optamos, portanto, pela divisão temporal, especificamente escolhendo 2021 para teste por representar aproximadamente 17% das instâncias totais (atendendo nosso critério mínimo de 15% para teste), enquanto os anos anteriores compõem o conjunto de treino.
 
-Em relação a representatividade das classes, apesar dos esforços em alcançar 10% de representatividade da classe minoritária, concluímos que isso não seria possível sem trazer vieses possivelmente prejudiciais à acurácia do modelo. Assim, no dataset final temos aproximadamente 6.25% de representatividade da classe minoritária.
+Em relação a representatividade das classes, apesar dos esforços em alcançar 10% de representatividade da classe minoritária - como revisitar a definição de tal classe, incluindo óbitos por outras doenças -, concluímos que isso não seria possível sem trazer vieses possivelmente prejudiciais à acurácia do modelo. Assim, no dataset final temos aproximadamente 6.25% de representatividade da classe minoritária. Pretendemos estudar técnicas para minimizar a disparidade entre as classes futuramente.
 
 ## 4. Exploração dos dados
 
