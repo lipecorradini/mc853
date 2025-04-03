@@ -110,7 +110,8 @@ Para isso, foi necessário consultar a Tabela de Códigos de Municípios do IBGE
 Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base de dados final. Além disso, explorando a divisão por região, verificamos que aproximadamente 70% dos casos eram provenientes apenas das regiões nordeste e sudeste. Por isso, optaremos por realizar a divisão dos dados entre treino e teste a partir do critério temporal.
 
 ## 3. Divisão de Treino e Teste
-@lucca explicar aqui como vc dividiu
+
+Inicialmente, tentamos realizar uma divisão geográfica dos dados de esquistossomose para treino e teste do modelo. Contudo, identificamos um severo desequilíbrio na distribuição dos casos entre as regiões brasileiras: a região Sudeste concentra a maioria dos registros (4.135 casos), seguida pela região Nordeste (1.719 casos), enquanto as regiões Norte, Sul e Centro-Oeste têm representação mínima (52, 66 e 26 casos, respectivamente). Acreditamos que essa disparidade regional comprometeria o treinamento do modelo, criando viés e limitando sua capacidade de generalização. Optamos, portanto, pela divisão temporal, especificamente escolhendo 2021 para teste por representar aproximadamente 17% das instâncias totais (atendendo nosso critério mínimo de 15% para teste), enquanto os anos anteriores compõem o conjunto de treino.
 
 ## 4. Exploração dos dados
 
