@@ -17,7 +17,7 @@
 
 Este relatório busca descrever os passos realizados para obtenção do banco de dados no formato atributo-alvo com informações acerca de pacientes diagnosticados com esquistossomose. Para a construção da base de dados, foram utilizados dados disponibilizados no SINAN, referentes à ficha de notificação de pacientes que contraíram o parasita schistosoma mansoni entre os anos de 2020 e 2023. 
 
-Primeiramente, o critério principal escolhido para a definição de uma doença dentre as diversas mostradas no site do SINAN foi a da taxa de mortalidade. Com uma taxa de mortalidade muito pequena, as diferentes classes poderiam estar pouco representadas no momento em que fossem treinados modelos com os dados em questão. Por isso, o grupo avaliou algumas doenças que ainda não haviam sido escolhidas por outros grupos, e chegou a conclusão que a taxa de mortalidade de 2.43% da esquistossomose era suficiente para prosseguir o trabalho com a doença.
+Primeiramente, o critério principal escolhido para a definição de uma doença dentre as diversas mostradas no site do SINAN foi a da taxa de mortalidade. Com uma taxa de mortalidade muito pequena, as diferentes classes poderiam estar pouco representadas no momento em que fossem treinados modelos com os dados em questão. Por isso, o grupo avaliou algumas doenças que ainda não haviam sido escolhidas por outros grupos, e chegou a conclusão que a taxa de mortalidade de 4.37% da esquistossomose era suficiente para prosseguir o trabalho com a doença.
 
 Além disso, em função da ausência de dados referentes aos períodos de 2024 à 2025, o grupo optou, inicialmente, por utilizar os dados do ano de 2023. Porém, em virtude da esquistossomose apresentar relativamente menos casos anuais comparado à outras doenças presentes na base, o grupo optou por selecionar os dados da janela de 2019 à 2023, com o intuito de aumentar a quantidade total de dados obtidos.
 
@@ -57,7 +57,7 @@ colunas_selecionadas = [
 ]
 ```
 
-A escolha foi realizada avaliando todas as variáveis disponíveis, e considerando aquelas que julgamos mais relevantes para o futuro treinamento do modelo. ALém disso, as bases de dados da dengue disponibilizada no classroom também influenciaram na escolha de algumas das features em questão. 
+A escolha foi realizada avaliando todas as variáveis disponíveis, e considerando aquelas que julgamos mais relevantes para o futuro treinamento do modelo. Além disso, as bases de dados da dengue disponibilizada no classroom também influenciaram na escolha de algumas das features em questão. 
 
 ### 2.3 Tratamento das variáveis categóricas
 
@@ -71,7 +71,7 @@ Porém, ao concluir o tratamento, notamos que uma quantidade ínfima dos dados (
 
 #### 2.3.2 Quantidade de Ovos
 
-Para o atributo "Quantidade de Ovos encontrados", este já está em forma binária, indicando se não foram encontrados ovos da Schistossoma no exame de fezes (0) ou se foram encontrados (1). Por isso, não foi necessário realizar o tratamento.
+O atributo "Quantidade de Ovos encontrados" já se encontrava em forma binária, indicando se não foram encontrados ovos da Schistossoma no exame de fezes (0) ou se foram encontrados (1). Por isso, não foi necessário realizar o tratamento.
 
 #### 2.3.3 Exame qualitativo
 
@@ -81,21 +81,21 @@ Além disso, como existem muitos valores nulos na coluna, vamos atribuí-los a u
 
 #### 2.3.4 Tratamento Realizado
 
-A categoria apresenta o tratamento que foi realizado pelo paciente no combate à doença, sendo 1=  Sim  –  Praziquantel,  2=  Sim,  Oxaminiquine,  3=  Não  ou  9=  Ignorado. De maneira análoga à feature anterior, foi realizado o *One-Hot encoding* a fim de serem obtidas colunas para cada uma das categorias distintas.
+A categoria apresenta o tratamento que foi realizado pelo paciente no combate à doença, sendo 1=  Sim  –  Praziquantel,  2=  Sim - Oxaminiquine,  3=  Não  ou  9=  Ignorado. De maneira análoga à feature anterior, foi realizado o *One-Hot encoding* a fim de serem obtidas colunas para cada uma das categorias distintas.
 
 #### 2.3.5 Forma clínica avaliada
 
-De maneira análoga, apresentava 5 categorias distintas (Intestinal, Hepato-Intestinal, Hepato-Esplênica, Aguda e Outra). Cada categoria foi transformada em uma coluna distinta.
+De maneira análoga às features anteriores, apresentava 5 categorias distintas (Intestinal, Hepato-Intestinal, Hepato-Esplênica, Aguda e Outra). Cada categoria foi transformada em uma coluna distinta.
 
 #### 2.3.6 Escolaridade
 
 Como o campo escolaridade apresenta uma cardinalidade lógica, ou seja, o "1" = 1º a 4º série incompleta e "8" = Educação superior completa, podemos considerá-lo como um atributo numérico, e não é necessário realizar o *One-Hot-Encoding*.
 
-Porém, como os atributos "9" = Ignorado e "10" = Não se aplica, transformamos-os em "0" para garantir que não sejam considerados com uma cardinalidade maior que a Educação superior completa.
+Porém, como os atributos "9" e "10" são Ignorado e Não se aplica, respectivamente, transformamos-os em "0" para garantir que não sejam considerados com uma cardinalidade maior que a Educação superior completa.
 
 #### 2.3.7 Sexo Biológico
 
-Como apenas três valores eram apresentados, sendo o terceiro "Ignorado" contendo apenas 3 instâncias no total, optamos por remover as instâncias que continham tal valor. 
+Como apenas três valores eram apresentados, sendo o terceiro ("Ignorado") contendo apenas 3 instâncias no total, optamos por remover as instâncias que continham tal valor. 
 
 #### 2.3.8 Ano de Nascimento
 
@@ -103,7 +103,9 @@ Como o grupo compreendeu que a "Idade" seria um campo mais representativo do que
 
 #### 2.3.9 Unidade Federativa
 
-Para este campo, o grupo optou por dividir as instâncias em regiões do brasil, ao invés de "Unidade Federativas", como apresentado pela base de dados original. Para isso, foi necessário consultar a Tabela de Códigos de Municípios do IBGE, a fim de identificar cada estado presente na base de dados original e atribuí-lo à região correspondente.
+Para este campo, o grupo optou por dividir as instâncias em regiões do brasil, ao invés de "Unidade Federativas", como apresentado pela base de dados original. A motivação para tal mudança era analisar a viabilidade de utilizar um critério geográfico para divisão dos dados entre treino e teste.
+
+Para isso, foi necessário consultar a Tabela de Códigos de Municípios do IBGE, a fim de identificar cada estado presente na base de dados original e atribuí-lo à região correspondente.
 
 Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base de dados final. Além disso, explorando a divisão por região, verificamos que aproximadamente 70% dos casos eram provenientes apenas das regiões nordeste e sudeste. Por isso, optaremos por realizar a divisão dos dados entre treino e teste a partir do critério temporal.
 
