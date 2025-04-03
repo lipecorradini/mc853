@@ -116,12 +116,12 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 
 ### 4.1 Distribuição de Idades dos Pacientes
 ![Distribuição de Idades](consistent_distribution_of_ages.png)
-**Importância:** Conhecer a distribuição das idades ajuda a identificar quais faixas etárias são mais impactadas pela condição em estudo. Essa informação pode ser essencial para ajustar o modelo preditivo a fim de melhorar a acurácia para diferentes grupos de idade, garantindo que as previsões sejam eficazes para toda a população.
+**Importância:** Ao analisar a distribuição das idades podemos notar que a grande maioria dos casos condiz com a PIA (População em Idade Ativa), indicando uma possível correlação de atividades laborais com a infecção pela doença.
 
 ### 4.2 Distribuição por Regiões
 ![Distribuição por Regiões](readable_distribution_by_regions.png)
-**Importância:** A localização geográfica dos pacientes pode ser um fator crucial em modelos preditivos, especialmente se determinados tratamentos ou condições forem mais prevalentes em certas regiões. Incorporar esta variável pode ajudar o modelo a capturar variações regionais nos padrões de saúde e melhorar a previsão de resultados.
+**Importância:** A observação das regiões pode trazer uma correlação com os casos e seus espaços geográficos, incluindo fatores climáticos e sociais. Entretanto, a ausência de região em uma quantidade de casos é capaz de afetar essa análise, trazendo, portanto, um ponto de análise futura. 
 
 ### 4.3 Heatmap de Correlação de Atributos
 ![Heatmap de Correlação](readable_heatmap_correlation.png)
-**Importância:** Este gráfico mostra a correlação entre diferentes atributos, ajudando a identificar quais variáveis podem ser redundantes ou fortemente correlacionadas. Essas informações permitem a seleção de características mais relevantes, evitando o overfitting e melhorando a capacidade preditiva do modelo.
+**Importância:** O heatmap é crucial para validar correlações entre os atributos selecionados, tais como: Quantidade de Ovos Encontrados X Exame Positivo, Resultado X Idade, etc. O que torna, por sua vez, nossa análise mais profunda e objetiva.
