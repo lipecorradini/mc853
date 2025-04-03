@@ -116,12 +116,12 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 
 ### 4.1 Distribuição de Idades dos Pacientes
 ![Distribuição de Idades](consistent_distribution_of_ages.png)
-**Importância:** Este gráfico mostra como a população de pacientes está distribuída em termos de idade. Isso é essencial para identificar faixas etárias que podem estar em maior risco ou que têm maior prevalência da condição estudada. Tais informações podem direcionar intervenções de saúde pública ou campanhas de conscientização para grupos etários específicos.
+**Importância:** Conhecer a distribuição das idades ajuda a identificar quais faixas etárias são mais impactadas pela condição em estudo. Essa informação pode ser essencial para ajustar o modelo preditivo a fim de melhorar a acurácia para diferentes grupos de idade, garantindo que as previsões sejam eficazes para toda a população.
 
 ### 4.2 Distribuição por Regiões
 ![Distribuição por Regiões](readable_distribution_by_regions.png)
-**Importância:** A visualização da distribuição regional ajuda a entender onde a maioria dos pacientes está localizada. Isso é vital para a alocação de recursos, planejamento de instalações médicas e esforços focados em regiões que exibem maior necessidade ou ocorrência da condição em análise.
+**Importância:** A localização geográfica dos pacientes pode ser um fator crucial em modelos preditivos, especialmente se determinados tratamentos ou condições forem mais prevalentes em certas regiões. Incorporar esta variável pode ajudar o modelo a capturar variações regionais nos padrões de saúde e melhorar a previsão de resultados.
 
 ### 4.3 Heatmap de Correlação de Atributos
 ![Heatmap de Correlação](readable_heatmap_correlation.png)
-**Importância:** O heatmap de correlação revela relações entre diferentes atributos. Ele pode destacar quais variáveis estão fortemente correlacionadas, fornecendo insights sobre potenciais causas ou fatores associados à condição. Isso é particularmente útil na modelagem preditiva e em estudos de intervenção.
+**Importância:** Este gráfico mostra a correlação entre diferentes atributos, ajudando a identificar quais variáveis podem ser redundantes ou fortemente correlacionadas. Essas informações permitem a seleção de características mais relevantes, evitando o overfitting e melhorando a capacidade preditiva do modelo.
