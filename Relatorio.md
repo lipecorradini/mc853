@@ -119,7 +119,7 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 **Importância:** Este gráfico mostra como a população de pacientes está distribuída em termos de idade. Isso é essencial para identificar faixas etárias que podem estar em maior risco ou que têm maior prevalência da condição estudada. Tais informações podem direcionar intervenções de saúde pública ou campanhas de conscientização para grupos etários específicos.
 
 ## Distribuição por Regiões
-![Distribuição por Regiões](consistent_distribution_by_regions.png)
+![Distribuição por Regiões](readable_distribution_by_regions.png)
 **Importância:** A visualização da distribuição regional ajuda a entender onde a maioria dos pacientes está localizada. Isso é vital para a alocação de recursos, planejamento de instalações médicas e esforços focados em regiões que exibem maior necessidade ou ocorrência da condição em análise.
 
 ## Heatmap de Correlação de Atributos
