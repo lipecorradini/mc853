@@ -128,7 +128,7 @@ Com isso, 5 colunas referentes às 5 regiões do país foram adicionadas à base
 
 ## 3. Divisão de Treino e Teste
 
-A divisão entre treino e teste foi realizada seguindo como base o critério temporal. Para isso, utilizamos todas as instâncias do ano mais recente (2023) e as separamos como o caso de teste, o que resultou em, aproximadamente, 20% das instâncias totais do dataset.
+A divisão entre treino e teste foi realizada seguindo como base o critério temporal. Ainda foi analizada a possibilidade de utilizar o critério geográfico, mas a alta concentração em regiões específicas (conforme evidenciado na seção seguinte) motivou ao grupo seguir com a escolha temporal. Para isso, utilizamos todas as instâncias do ano mais recente (2023) e as separamos como o caso de teste, o que resultou em, aproximadamente, 20% das instâncias totais do dataset.
 
 Em relação a representatividade das classes, a porcentagem de mortalidade ainda se mostra reduzida a fim de treinar um modelo devidamente balanceado. Por isso, estratégias para mitigar esse desbalanceamento serão mostradas no relatório de descrição do trabalho 2.
 
@@ -136,14 +136,20 @@ Em relação a representatividade das classes, a porcentagem de mortalidade aind
 
 ### 4.1 Distribuição de Idades dos Pacientes
 ![Distribuição de Idades](./images/consistent_distribution_of_ages.png)
- Ao analisar a distribuição das idades podemos notar que a grande maioria dos casos condiz com a PIA (População em Idade Ativa), indicando uma possível correlação de atividades laborais com a infecção pela doença.
+ Ao analisar a distribuição das idades podemos notar que a grande maioria dos casos condiz com a PIA (População em Idade Ativa), indicando uma possível correlação de atividades laborais com a infecção pela doença. Porém, como a distribuição também se aproxima da pirâmide etária da sociedade, seria necessária uma análise mais profunda acerca da natureza da doença.
 
 ### 4.2 Distribuição por Regiões
 ![Distribuição por Regiões](./images/readable_distribution_by_regions.png)
- A observação das regiões pode trazer uma correlação com os casos e seus espaços geográficos, incluindo fatores climáticos e sociais. Entretanto, a ausência de região em uma quantidade considerável de casos é capaz de afetar essa análise, trazendo, portanto, um ponto para ser observado em etapas futuras do projeto. 
+ A observação das regiões indica a alta concentração dos casos na região sudeste e nordeste. Entretanto, a ausência de região em uma quantidade considerável de casos é capaz de afetar essa análise, trazendo, portanto, um ponto para ser observado em etapas futuras do projeto. 
 
 ### 4.3 Heatmap de Correlação de Atributos
 ![Heatmap de Correlação](./images/readable_heatmap_correlation.png)
- Analisando as correlações entre as features escolhidas, é possível notar que poucas apresentam correlação próxima de 1 (ou seja, dependente linearmentes). Porém, o heatmap também evidencia correlações acima da média, como entre Quantidade de Ovos e Diagnóstico positivo, indicando que uma futura análise acerca da linearidade entre essas features pode ser realizada na etapa de treinamento do modelo, a fim de evitar variáveis linearmente dependentes.
+ Analisando as correlações entre as features escolhidas, é possível notar que poucas apresentam correlação próxima de 1 (ou seja, dependente linearmentes). Porém, o heatmap também evidencia correlações acima da média, como entre Quantidade de Ovos e Diagnóstico positivo, o que faz sentido, visto que o exame que resultou no diagnóstico positivo é influenciado por uma alta quantidade de ovos.
 
 # Trabalho 2
+
+## Treinamento de três modelos de aprendizado de máquina para o problema da predição de mortes na esquistossomose
+
+### 1. Análise do problema
+
+Conforme explorado no Trabalho 1, foi necessário adotar abordagens
