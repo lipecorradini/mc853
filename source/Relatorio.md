@@ -150,6 +150,24 @@ Em relação a representatividade das classes, a porcentagem de mortalidade aind
 
 ## Treinamento de três modelos de aprendizado de máquina para o problema da predição de mortes na esquistossomose
 
-### 1. Visão geral
+## 1. Visão geral
 
-Para o trabalho 2, foi realizado o treinamento de três modelos de aprendizado de máquina (kNN, Regressão Logística e Random Forest) utilizando validação cruzada em 5 pastas.
+Para o trabalho 2, foi realizado o treinamento de três modelos de aprendizado de máquina (kNN, Regressão Logística e Random Forest), utilizando validação cruzada em 5 pastas e busca em grade pelos melhores hiperparâmetros.
+
+## 2. Treinamento do modelo
+
+Antes de iniciar o treinamento dos modelos em si, algumas estratégias tiveram que ser definidas e outras considerações acerca da natureza dos dados foram consideradas.
+
+### 2.1 Balanceamento das classes
+
+Em virtude do notável desbalanceamento descrito no Trabalho 1 e apresentado na figura abaixo, algumas estratégias para mitigar esse desbalanceamento foram importantes para garantir maior representatividade dos óbitos no modelo.
+
+![Distribuicao classes](./images/distribuicao_classes.png)
+
+Para isso, foi adotada a seguinte estratégia: utilizando a biblioteca imblearn, voltada para o balanceamento de classes, o primeiro passo foi realizar o oversampling da classe minoritária, utilizando o SMOTE (Synthetic Minority Over-Sampling Technique), até atingir 20% da classe majoritária. 
+O segundo passo foi realizar undersampling, utilizando o método Nearmiss, até que o número de instâncias da classe majoritária fosse no máximo 1.5x do número de instâncias da classe minoritária.
+
+Vale ressaltar que, como realizar esse processo antes de todo o treinamento enviesaria o modelo, uma vez que este ficaria limitado ao novo conjunto de dados e não teria acesso aos dados removidos, então esse processo foi realizado apenas dentro dos 'folds' de treinamento dentro do K-Fold.
+
+Portanto, para cada "fold", o balanceamento era realizado apenas no treinamento, de modo que o conjunto de validação da iteração atual não era afetado. Com isso, o conjunto de validação manteria uma proporção mais próxima da do conjunto de testes, refletindo melhor os resultados reais do modelo.
+
