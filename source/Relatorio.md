@@ -150,6 +150,6 @@ Em relação a representatividade das classes, a porcentagem de mortalidade aind
 
 ## Treinamento de três modelos de aprendizado de máquina para o problema da predição de mortes na esquistossomose
 
-### 1. Análise do problema
+### 1. Visão geral
 
-Conforme explorado no Trabalho 1, foi necessário adotar abordagens
+Para o trabalho 2, foi realizado o treinamento de três modelos de aprendizado de máquina (kNN, Regressão Logística e Random Forest) utilizando validação cruzada em 5 pastas.
