@@ -146,6 +146,7 @@ Em relação a representatividade das classes, a porcentagem de mortalidade aind
 ![Heatmap de Correlação](./images/readable_heatmap_correlation.png)
  Analisando as correlações entre as features escolhidas, é possível notar que poucas apresentam correlação próxima de 1 (ou seja, dependente linearmentes). Porém, o heatmap também evidencia correlações acima da média, como entre Quantidade de Ovos e Diagnóstico positivo, o que faz sentido, visto que o exame que resultou no diagnóstico positivo é influenciado por uma alta quantidade de ovos.
 
+---
 # Trabalho 2
 
 ## Treinamento de três modelos de aprendizado de máquina para o problema da predição de mortes na esquistossomose
@@ -153,6 +154,7 @@ Em relação a representatividade das classes, a porcentagem de mortalidade aind
 ## 1. Visão geral
 
 Para o trabalho 2, foi realizado o treinamento de três modelos de aprendizado de máquina (kNN, Regressão Logística e Random Forest), utilizando validação cruzada em 5 pastas e busca em grade pelos melhores hiperparâmetros.
+
 
 ## 2. Treinamento do modelo
 
@@ -169,5 +171,59 @@ O segundo passo foi realizar undersampling, utilizando o método Nearmiss, até 
 
 Vale ressaltar que, como realizar esse processo antes de todo o treinamento enviesaria o modelo, uma vez que este ficaria limitado ao novo conjunto de dados e não teria acesso aos dados removidos, então esse processo foi realizado apenas dentro dos 'folds' de treinamento dentro do K-Fold.
 
-Portanto, para cada "fold", o balanceamento era realizado apenas no treinamento, de modo que o conjunto de validação da iteração atual não era afetado. Com isso, o conjunto de validação manteria uma proporção mais próxima da do conjunto de testes, refletindo melhor os resultados reais do modelo.
+Portanto, para cada "fold", o balanceamento era realizado apenas no treinamento, de modo que o conjunto de validação da iteração atual não era afetado. Com isso, o conjunto de validação manteria uma proporção mais próxima da do conjunto de testes, refletindo melhor os resultados reais do modelo
+.
+
+### 2.2 Técnicas utilizadas no treinamento
+
+Para instanciar os modelos, foram utilizadas as versões disponibilizadas pelo *sklearn*. Todos foram inicializados conforme os parâmetros iniciais sugeridos no enunciado do trabalho. A ideia central do treinamento consistiu em iterar por cada modelo, e seguir com a aplicação do *StratifiedKFold*, também do *sklearn*, a fim de dividir os dados em 5 pastas distintas. A versão *Stratified* do K-Fold foi escolhida a fim de garantir que a divisão das pastas de treino e de validação mantenham proporções similares de ambas as classes.
+
+Realizada a divisão em folds, a ideia consistiu em iterar por cada pastae realizar a aumentação descrita na seção 2.1. Após essa etapa, o modelo base (sem parâmetros treinados) foi clonado, a fim de ser realizada a busca em grade, disponível pelo *sklearn* com a função *GridSearchCV*. O método definido para avaliar os parâmetros no *gridsearch* foi a revocação (a escolha será justificada nas seções seguintes), e foram utilizados mais 5 *folds* dentro da função.
+
+Obtidos os melhores parâmetros para o modelo específico e a pasta atual, as métricas são calculadas. Apesar da sugestão inicial de calcular apenas a precisão e revocação, o grupo também optou por calcular a acurácia, acurácia balanceada e *f1-score* para cada iteração, a fim de utilizar mais informações para tomar a decisão do melhor modelo selecionado.
+
+Após o cálculo de todas as métricas, os valores são salvos para posterior análise. Também são armazenados as predições e valores corretos do conjunto *target*, e também cada modelo com os parâmetros atualizados pelo *GridSearch*.
+
+### 2.3 Definição do melhor modelo
+
+Ao final do treinamento, haviam 5 instâncias de cada modelo disponível, totalizando 15 modelos para o grupo realizar a análise. Como métrica principal para avaliar o modelo, o grupo optou inicialmente por avaliar o f1-score, já que combina precisão e revocação em uma só métrica, e parecia ser bastante completa para análise do modelo.
+
+Porém, a medida que discussões foram realizadas, o grupo percebeu que a natureza da predição favorecia à escolha da revocação como métrica principal. Isso se dá porque, partimos do pressuposto que o objetivo do projeto é prever a cura ou o óbito dado uma notificação da esquistossomose, resultado de exames e tratamentos realizados. Com isso, entendemos que seria mais correto garantir que a maioria os óbitos fossem preditos pelo modelo, mesmo que algumas curas fossem preditas erroneamente, do que buscar uma maior precisão dentre os acertos realizados. Esse dilema é o *tradeoff* entre precisão e revocação.
+
+| model      | accuracy | balanced\_accuracy | recall   | f1\_score |
+| --------------------- | -------- | ------------------ | -------- | --------- |
+| KNN                  | 0.193789 | 0.908444           | 0.806452 | 0.312500  |
+| Logistic Regression | 0.282353 | 0.941176           | 0.774194 | 0.413793  |
+| Random Forest    | 0.457143 | 0.969749           | 0.500000 | 0.477612  |
+
+
+Definida a métrica de decisão, foram selecionados o modelo com melhores parâmetros nesse quesito para cada um dos algoritmos. O RandomForest com os melhores parâmetros mostrou-se como o modelo que conseguiu garantir a menor revocação, sendo o maior valor atingido de 0.5. Por isso, foi necessário analisar as diferenças entre o KNN e a Regressão Logística. 
+
+Para a melhor instância da Regressão Logística, foi obtido um *f1-score* de 0.41, em comparação com o *f1-score* de 0.31 obtido pelo melhor modelo de KNN. Porém, o KNN obteve recall de 0.8, enquanto a Regressão Logística obteve apenas 0.77, apesar de mostrar-se superior no quesito precisão, o que elevou o *f1-score*. Com isso, o grupo optou por escolher o KNN como o melhor modelo.
+
+![Matriz de confusão validação](./images/matriz_confusao_validacao.png)
+
+É possível notar que, para a validação, apesar da notória sub-representação da classe de óbitos frente à cura, o modelo conseguiu classificar 80% dos óbitos corretamente.
+
+### 2.4 Testes e Conclusão
+
+Escolhido o modelo com melhor resultado nos conjuntos de validação, o grupo voltou-se para a predição no conjunto de testes. Para isso, foi utilizado o atributo *predict* na instância do modelo escolhido, que havia sido salvo anteriomente. Obtidas as predições, as principais métricas foram calculadas:
+
+| precision | recall | f1-score |
+|-----------|--------|----------|
+| 0.179     | 0.750  | 0.289    |
+
+Os resultados, apesar de levemente inferiores, não se mostraram tão distintos em relação ao conjunto de validação. Tal redução é comum no contexto de aprendizado de máquina, visto que o conjunto de testes pode ser de uma natureza distinta (no caso desse trabalho, de um ano futuro), o que faz com que o modelo não identifique todos os padrões presentes.
+
+Porém, a similaridade com os resultados do conjunto de validação evidencia que o balanceamento dos dados foi satisfatório, garantindo consistência nas predições entre as classes.
+
+![Matriz de confusão testes](./images/matriz_confusao_teste.png)
+
+A matriz de confusão ainda reenforça a similaridade com o conjunto de validação, apesar da menor revocação. 
+
+Como conclusão do trabalho, o grupo acredita que os resultados foram satisfatórios quando analisada a natureza dos dados para a doença da esquistossomose. Em virtude da ausência de features considerando os sintomas para a doença em questão, a utilização de variáveis dos exames e tratamentos realizados tornou a tarefa de prediçaõ mais desafiadora, exigindo uma maior análise para assegurar a qualidade dos dados. 
+
+Com isso, uma revocação de 75% no conjunto de testes indica que ainda seriam necessários refinamentos e análises para ampla utilização do modelo, já que a questão de prever óbitos é uma tarefa de natureza extremamente crítica, e deve ser realizada da maneira mais cautelosa possível.
+
+Um possível próximo passo seria a utilização de técnicas de explicabilidade para entender o impacto de cada feature no resultado final, afim de avaliar possíveis vieses e inconsistências na predição dos resultados. Além disso, o modelo seria amplamente beneficiado de tanto uma disponibilidade maior quanto mais recentes de dados referentes à notificações da doença. A utilização de dados dos anos de 2019 até 2023 pode conter viéses implícitos da época, muito por conta também da pandemia, o que poderiam tornar predições no ano de 2025 menos precisas do que evidenciados no conjunto de testes.
 
